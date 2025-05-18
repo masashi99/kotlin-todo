@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: todo-demo
+  r2dbc:
+    url: r2dbc:h2:mem:///testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
