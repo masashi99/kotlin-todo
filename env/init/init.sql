@@ -1,0 +1,11 @@
+-- 拡張機能の有効化
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- TODOテーブルの作成
+CREATE TABLE IF NOT EXISTS todos (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    title VARCHAR(255) NOT NULL,
+    completed BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,6 +1,15 @@
 spring:
   application:
     name: todo-demo
+  profiles:
+    active: dev
+
+---
+# 開発環境プロファイル
+spring:
+  config:
+    activate:
+      on-profile: dev
   r2dbc:
     url: r2dbc:h2:mem:///testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
     username: sa
@@ -8,3 +17,25 @@ spring:
   h2:
     console:
       enabled: true
+
+---
+# 本番環境プロファイル
+spring:
+  config:
+    activate:
+      on-profile: prod
+  r2dbc:
+    url: r2dbc:postgresql://postgres:5432/todo_db
+    username: postgres
+    password: password
+    properties:
+      ssl: false
+  flyway:
+    enabled: false # R2DBCではFlywayサポートが完全ではないため、必要に応じて設定
+
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG
+    io.r2dbc.postgresql: DEBUG
+
+
